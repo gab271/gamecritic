@@ -18,5 +18,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <a href="{{ route('bicycles.index')}}">Back to the list of Videogames</a>
+    <a href="{{ route('videogames.index')}}">Back to the list of Videogames</a>
 @endsection
