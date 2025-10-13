@@ -21,12 +21,17 @@ class VideogameController extends Controller
 
     public function store(Request $request)
     {
-        $videogames = new Videogame();
-        $videogames->title = $request->input('title');
-        $videogames->genre = $request->input('genre');
-        $videogames->platform = $request->input('platform');
-        $videogames->save();
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'genre' => 'required|string|max:255',
+            'platform' => 'required|string|max:255',
+        ]);
 
-        return redirect()->route('videogames.index');
+        Videogame::create($validated);
+
+        return redirect()->route('videogames.index')->with('success', 'Videogame created.');
     }
+
+     
+
 }

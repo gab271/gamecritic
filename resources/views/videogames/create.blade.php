@@ -6,7 +6,7 @@
         @csrf
         <div class="form-group">
             <label for="title">title</label>
-            <input type="text" name="tile" class="form-control" id="title" placeholder="Enter videogame title">
+            <input type="text" name="title" class="form-control" id="title" placeholder="Enter videogame title">
         </div>
         <div class="form-group">
             <label for="genre">genre</label>
