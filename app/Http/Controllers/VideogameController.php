@@ -32,6 +32,24 @@ class VideogameController extends Controller
         return redirect()->route('videogames.index')->with('success', 'Videogame created.');
     }
 
-     
+     public function update(Request $request, $id)
+    {
+    $request->validate([
+      'title' => 'required|max:255',
+      'genre' => 'required',
+      'platform'=> 'required|string|max:255',
+    ]);
+    $post = Post::find($id);
+    $post->update($request->all());
+    return redirect()->route('posts.index')
+      ->with('success', 'Post updated successfully.');
+  }
 
+   public function destroy($id)
+  {
+    $post = Post::find($id);
+    $post->delete();
+    return redirect()->route('posts.index')
+      ->with('success', 'Post deleted successfully');
+  }
 }
