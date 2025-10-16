@@ -1,20 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Videogames</title>
-</head>
+@section('content')
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Library</h1>
+        <a href="{{ route('videogames.create') }}" class="btn btn-sm btn-primary">Add new</a>
+    </div>
 
-<body>
-    <h1>Listado de videojuegos</h1>
-    <ul>
-        @foreach ($videogames as $videogame)
-            <li>{{ $videogame->title }}{{ $videogame->genre }}{{ $videogame->platform }}</li>
-        @endforeach
-    </ul>
-</body>
-
-</html>
+    @if($videogames->isEmpty())
+        <div class="alert alert-info">No videogames yet. <a href="{{ route('videogames.create') }}">Add the first one</a>.</div>
+    @else
+        <div class="card card-vg p-3">
+            <table class="table table-striped table-vg mb-0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Platform</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($videogames as $videogame)
+                        <tr>
+                            <td>{{ $videogame->title }}</td>
+                            <td>{{ $videogame->genre }}</td>
+                            <td>{{ $videogame->platform }}</td>
+                            <td class="text-right">
+                                <a href="{{ route('videogames.show', $videogame) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{{ route('videogames.edit', $videogame) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+@endsection

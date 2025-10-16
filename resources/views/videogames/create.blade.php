@@ -1,22 +1,41 @@
 @extends('layout')
 
 @section('content')
-    <h1>Create a new Videogames</h1>
-    <form method="POST" action="{{ route('videogames.store') }}">
-        @csrf
-        <div class="form-group">
-            <label for="title">title</label>
-            <input type="text" name="title" class="form-control" id="title" placeholder="Enter videogame title">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card card-vg p-4">
+                <h2 class="mb-3">Add a new videogame</h2>
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('videogames.store') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter videogame title" value="{{ old('title') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Genre</label>
+                        <input type="text" name="genre" class="form-control" id="genre" placeholder="Enter videogame genre" value="{{ old('genre') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="platform">Platform</label>
+                        <input type="text" name="platform" class="form-control" id="platform" placeholder="Enter videogame platform" value="{{ old('platform') }}">
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('videogames.index') }}" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Save videogame</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="genre">genre</label>
-            <input type="text" name="genre" class="form-control" id="genre" placeholder="Enter videogame genre">
-        </div>
-        <div class="form-group">
-            <label for="platform">platform</label>
-            <input type="text" name="platform" class="form-control" id="platform" placeholder="Enter videogame platform">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <a href="{{ route('videogames.index')}}">Back to the list of Videogames</a>
+    </div>
 @endsection
