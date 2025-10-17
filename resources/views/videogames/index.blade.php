@@ -26,8 +26,12 @@
                             <td>{{ $videogame->genre }}</td>
                             <td>{{ $videogame->platform }}</td>
                             <td class="text-right">
-                                <a href="{{ route('videogames.show', $videogame) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                                <a href="{{ route('videogames.edit', $videogame) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="{{ route('videogames.edit', $videogame) }}" class="btn btn-sm btn-outline-primary mr-2">Edit</a>
+                                <form action="{{ route('videogames.destroy', $videogame) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this videogame?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
