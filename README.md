@@ -1,6 +1,6 @@
 # VideoGames Reviews
 
-Proyecto web en Laravel para publicar y gestionar reseñas de videojuegos: crea fichas de juegos, añade reseñas, filtra por plataforma o género y navega con paginación.
+A Laravel web app to publish and manage video game reviews: create game entries, add reviews, filter by platform/genre, and browse with pagination.
 
 <p align="center">
   <a href="https://laravel.com" target="_blank">
@@ -14,18 +14,18 @@ Proyecto web en Laravel para publicar y gestionar reseñas de videojuegos: crea 
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
-## Características
+## Features
 
-- CRUD de videojuegos y reseñas.
-- Campos: título, plataforma, género, fecha de lanzamiento, valoración, notas.
-- Búsqueda y filtros por plataforma y género.
-- Validación de formularios y mensajes de error.
-- Paginación de listados y ordenación básica.
+- CRUD for video games and reviews.
+- Fields: title, platform, genre, release date, rating, notes.
+- Search and filters by platform and genre.
+- Form validation with friendly error messages.
+- Pagination and basic sorting.
 
-## Requisitos
+## Requirements
 
-- PHP 8.2 o superior
+- PHP 8.2+
 - Composer
-- Node.js 18+ y npm
-- MySQL/MariaDB o SQLite
-- Extensiones PHP comunes (pdo, mbstring, openssl)
+- Node.js 18+ and npm
+- MySQL/MariaDB or SQLite
+- Common PHP extensions (pdo, mbstring, openssl)
