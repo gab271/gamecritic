@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-vg p-4">
-                <h2 class="mb-3">Add a new videogame</h2>
+                <h2 class="mb-3">Edit videogame</h2>
 
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -16,24 +16,25 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('videogames.store') }}">
+                <form method="POST" action="{{ route('videogames.update', $videogame) }}">
                     @csrf
+                    @method('PUT')
+
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter videogame title" value="{{ old('title') }}">
+                        <input type="text" name="title" class="form-control" id="title" placeholder="Enter videogame title" value="{{ old('title', $videogame->title) }}">
                     </div>
                     <div class="form-group">
                         <label for="genre">Genre</label>
-                        <input type="text" name="genre" class="form-control" id="genre" placeholder="Enter videogame genre" value="{{ old('genre') }}">
+                        <input type="text" name="genre" class="form-control" id="genre" placeholder="Enter videogame genre" value="{{ old('genre', $videogame->genre) }}">
                     </div>
                     <div class="form-group">
                         <label for="platform">Platform</label>
-                        <input type="text" name="platform" class="form-control" id="platform" placeholder="Enter videogame platform" value="{{ old('platform') }}">
+                        <input type="text" name="platform" class="form-control" id="platform" placeholder="Enter videogame platform" value="{{ old('platform', $videogame->platform) }}">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('videogames.index') }}" class="buttonmain">Back</a>
-                        <button type="submit" class="buttonmain">Save videogame</button>
-                        <link rel="stylesheet" href={{ asset('css/welcome.css') }}>
+                        <a href="{{ route('videogames.index') }}" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary">Update videogame</button>
                     </div>
                 </form>
             </div>

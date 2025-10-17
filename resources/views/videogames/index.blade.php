@@ -1,20 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layout')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Videogames</title>
-</head>
+@section('content')
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h3 mb-0">Videogames Reviews</h1>
+        <div>
+            <a href="{{ url('/') }}" class="btn btn-sm btn-outline-secondary mr-2">Home</a>
+            <a href="{{ route('videogames.create') }}" class="btn btn-sm btn-primary">Add new</a>
+        </div>
+    </div>
 
-<body>
-    <h1>Listado de videojuegos</h1>
-    <ul>
-        @foreach ($videogames as $videogame)
-            <li>{{ $videogame->title }}{{ $videogame->genre }}{{ $videogame->platform }}</li>
-        @endforeach
-    </ul>
-</body>
+    @if($videogames->isEmpty())
+        <div class="alert alert-info">No videogames in the list <a href="{{ route('videogames.create') }}">Please add one</a>.</div>
+    @else
+        <div class="card card-vg p-3">
+            <table class="table table-striped table-vg mb-0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Platform</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($videogames as $videogame)
+                        <tr>
+                            <td>{{ $videogame->title }}</td>
+                            <td>{{ $videogame->genre }}</td>
+                            <td>{{ $videogame->platform }}</td>
+                            <td class="text-right">
+                                <a href="{{ route('videogames.edit', $videogame) }}" class="btn btn-sm btn-outline-primary">Edit</a>
 
-</html>
+                                <form method="POST" action="{{ route('videogames.destroy', $videogame) }}" style="display:inline" onsubmit="return confirm('Delete "' + '{{ $videogame->title }}' + '"?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger ml-2">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+@endsection

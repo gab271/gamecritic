@@ -5,41 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        body {
-            background-color: #2F4858;
-        }
-
-        h1 {
-            text-align: center;
-            color: white;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        }
-
-        .expla {
-            text-align: center;
-            color: white;
-        }
-
-        .buttonmain {
-            align-content: center;
-            flex-direction: 
-        }
-    </style>
+    <link rel="stylesheet" href={{ asset('css/styles.css') }}>
+    <link rel="stylesheet" href={{ asset('css/welcome.css') }}>
+    <title>VideogamesCritic</title>
 </head>
 
 <body>
     <div>
-    <h1>VIDEOGAMECRITIC</h1>
+        <h1>VIDEOGAMECRITIC</h1>
     </div>
+    
     <div>
-    <p class="expla">Welcome, add your favourite games to the library </p>
+        <p class="expla">VideogameCritic is your hub for discovering great games, reading honest community reviews, and
+            sharing your own playthrough insights.
+            Browse the library to find titles by genre and platform, save your favorites, and track what you're
+            currently playing or plan to try next.
+             Finished a game or tested a demo? Publish a review with pros, cons, a score, and spoiler-safe notes to help
+            others decide what to play.</p>
     </div>
-    <div>
-    <button class="buttonmain">add games</button>
-    <button class="buttonmain">library</button>
+    <div class="buttons-wrap">
+        <a href="{{ route('videogames.create') }}" class="buttonmain">Review game</a>
+        <a href="{{ route('videogames.index') }}" class="buttonmain">Library</a>
     </div>
-
 </body>
+
 </html>

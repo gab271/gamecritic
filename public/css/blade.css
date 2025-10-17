@@ -1,0 +1,33 @@
+.textlist {
+  color: white;
+  text-align: center;
+}
+
+.btnlink{
+  display:inline-block;
+  padding:8px 16px;
+  text-decoration:none;
+  background:#eee;
+  border:1px solid #aaa;
+  border-radius:6px;
+  color:#111;
+}
+.btnlink:hover{ text-decoration:none; }
+
+ul.dot-center{
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: max-content;
+}
+.dot-center li{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+}
+.dot-center li::before{
+  content: "•";
+  font-size: 1.1em;
+  line-height: 1;
+}

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Videogame;
 
 class VideogameController extends Controller
@@ -22,8 +21,8 @@ class VideogameController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'genre' => 'required|string|max:255',
+            'title'    => 'required|string|max:255',
+            'genre'    => 'required|string|max:255',
             'platform' => 'required|string|max:255',
         ]);
 
@@ -32,24 +31,28 @@ class VideogameController extends Controller
         return redirect()->route('videogames.index')->with('success', 'Videogame created.');
     }
 
-     public function update(Request $request, $id)
+    public function edit(Videogame $videogame)
     {
-    $request->validate([
-      'title' => 'required|max:255',
-      'genre' => 'required',
-      'platform'=> 'required|string|max:255',
-    ]);
-    $post = Post::find($id);
-    $post->update($request->all());
-    return redirect()->route('posts.index')
-      ->with('success', 'Post updated successfully.');
-  }
+        return view('videogames.edit', compact('videogame'));
+    }
 
-   public function destroy($id)
-  {
-    $post = Post::find($id);
-    $post->delete();
-    return redirect()->route('posts.index')
-      ->with('success', 'Post deleted successfully');
-  }
+    public function update(Request $request, Videogame $videogame)
+    {
+        $validated = $request->validate([
+            'title'    => 'required|string|max:255',
+            'genre'    => 'required|string|max:255',
+            'platform' => 'required|string|max:255',
+        ]);
+
+        $videogame->update($validated);
+
+        return redirect()->route('videogames.index')->with('success', 'Videogame updated successfully.');
+    }
+
+    public function destroy(Videogame $videogame)
+    {
+        $videogame->delete();
+
+        return redirect()->route('videogames.index')->with('success', 'Videogame deleted');
+    }
 }
